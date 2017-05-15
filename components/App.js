@@ -12,19 +12,21 @@ export default class App extends Component {
       fruit: [],
       filters: []
     };
+
+    this.updateFilter = this.updateFilter.bind(this);
   }
 
   componentWillMount() {
-    fetch('/api/fruit')
-      .then(res => res.json())
-      .then(fruit => this.setState({fruit: fruit}));
     fetch('/api/fruit_types')
       .then(res => res.json())
       .then(filters => this.setState({filters: filters}));
+    fetch('/api/fruit')
+      .then(res => res.json())
+      .then(fruit => this.setState({ fruit: fruit }));
   };
-
-  updateFilter(event) {
-    this.setState({currentFilter: event.target.value})
+  
+  updateFilter(e) {
+    this.setState({ currentFilter: e.target.value });
   }
 
   render() {
